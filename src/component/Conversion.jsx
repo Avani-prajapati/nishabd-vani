@@ -1,11 +1,11 @@
 import React from 'react'
 import WebcamStream from "../WebcamStream"
+import Conversion1 from './Conversion1'
 
 export default function Conversion() {
   return (
     <>
-    <div className='px-8 text-2xl text-center'>Conversion</div>
-    <WebcamStream></WebcamStream>
+    <Conversion1></Conversion1>
     </>
   )
 }

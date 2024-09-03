@@ -6,6 +6,7 @@ const router = express.Router()
 
 router.post('/', wrapAsync(async(req,res)=>{
     const word = req.body.word;
+    // console.log(req.body);
     const gif = await Gif.findOne({sign_name : word}).select('-_id -__v');
     if(!gif){
         const error = new Error("Gif Not Found");
