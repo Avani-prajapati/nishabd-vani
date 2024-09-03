@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+    html {
+      @apply text-neutral-800;
+    }
+    html.dark {
+      @apply text-neutral-50;
+      @apply bg-neutral-800;
+    }
+  }
+  .active{
+   @apply  text-blue-400 underline;
+  }
+
+  .container{
+     @apply mx-0  max-w-full h-auto md:px-20 px-14;
+  }
+  ._testUl li{
+    /* background-color: aqua; */
+    border:1px solid rgb(79, 78, 78);
+    padding: 0.5rem;
+    list-style-type:upper-alpha;
+    /* list-style-type: gap; */
+    margin: 1rem;
+    font-size: 1.1rem;
+    border-radius: 2rem;
+    }
+   
+    ._testUl li:hover{
+    cursor: pointer;
+    /* background-color: rgb(215, 215, 250); */
+   }
+   .continer .correct{
+    background-color: rgb(211, 253, 211);
+    border: 2px solid green;
+   }
+   .continer .wrong{
+   background-color: rgb(234, 179, 179);
+   border: 2px solid red;
+   }
