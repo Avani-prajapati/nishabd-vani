@@ -5,7 +5,6 @@ let currentAlphabetIndexEng = 0;
 const alphabetsEng = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const number = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 // const alphabetsGujarati = ['અ', 'આ', 'ઇ', 'ઈ', 'ઉ', 'ઊ', 'ઋ', 'એ', 'ઐ', 'ઓ', 'ઔ', 'ક', 'ખ', 'ગ', 'ઘ', 'ચ', 'છ', 'જ', 'ઝ', 'ટ', 'ઠ', 'ડ', 'ઢ', 'ત', 'થ', 'દ', 'ધ', 'ન', 'પ', 'ફ', 'બ', 'ભ', 'મ', 'ય', 'ર', 'લ', 'વ', 'શ', 'ષ', 'સ', 'હ']; // Add more as needed
-
 let flagEng = false;
 
 
@@ -52,7 +51,7 @@ async function generateQuiz(currentAlphabet, alphabetSet) {
 
 // English alphabet route
 export const alphabetEng = wrapAsync(async (req, res) => {
-    currentAlphabetIndexEng = 0;
+  currentAlphabetIndexEng = 0;
   const currentAlphabet = alphabetsEng[0];
   const data = await EngAlphabet.findOne({ alphabet: currentAlphabet }).select('-_id -__v').lean();
   data.flag = "Learn"

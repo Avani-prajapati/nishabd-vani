@@ -1,7 +1,6 @@
 import wrapAsync from '../Utils/wrapAsync.js'
 import GujAlphabet from '../Schema/GujAlphabet.js';
 
-
 let currentAlphabetIndexGujarati = 0;
 // const alphabetsGujarati = ['અ', 'આ', 'ઇ', 'ઈ', 'ઉ', 'ઊ', 'ઋ', 'એ', 'ઐ', 'ઓ', 'ઔ', 'ક', 'ખ', 'ગ', 'ઘ', 'ચ', 'છ', 'જ', 'ઝ', 'ટ', 'ઠ', 'ડ', 'ઢ', 'ત', 'થ', 'દ', 'ધ', 'ન', 'પ', 'ફ', 'બ', 'ભ', 'મ', 'ય', 'ર', 'લ', 'વ', 'શ', 'ષ', 'સ', 'હ']; // Add more as needed
 const alphabetsGujarati = ['ક', 'ખ', 'ગ', 'ઘ', 'ચ', 'છ', 'જ', 'ઝ', 'ટ', 'ઠ', 'ડ', 'ઢ','ણ', 'ત', 'થ', 'દ', 'ધ', 'ન', 'પ', 'ફ', 'બ', 'ભ', 'મ', 'ય', 'ર', 'લ', 'વ', 'શ', 'ષ', 'સ', 'હ','ળ','ક્ષ']; // Add more as needed
@@ -57,6 +56,7 @@ export const alphabetGujarati = wrapAsync(async (req, res) => {
     const currentAlphabet = alphabetsGujarati[0];
     const data = await GujAlphabet.findOne({ alphabet: currentAlphabet }).select('-_id -__v').lean();
     data.flag = "Learn"
+    currentAlphabetIndexGujarati = (currentAlphabetIndexGujarati + 1) % alphabetsGujarati.length;
     return res.json(data);
   });
 
@@ -82,7 +82,7 @@ export const alphabetGujaratiNext = wrapAsync(async (req, res) => {
 });
 
 export const alphabetGujaratiPrev = wrapAsync(async (req, res) => {
-  if(currentAlphabetIndexGujarati-2<=0){
+  if(currentAlphabetIndexGujarati-2<0){
     const error = new Error("Start Learning");
     error.status = 400; // Set a custom status code
     throw error;
