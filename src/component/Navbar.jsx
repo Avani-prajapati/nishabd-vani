@@ -9,7 +9,7 @@ const Header = () => {
         {name:"Learning",link:"/learning",key :2},
         {name:"Practice",link:"/practice",key :3},
         {name:"Conversion",link:"/conversion",key :4},
-		{name:"Profile",link:"/profile",key :5}
+		// {name:"Profile",link:"/profile",key :5}
       ];
       let [open, setOpen] =useState(false);
 
@@ -35,6 +35,13 @@ const Header = () => {
                         <NavLink to={link.link} className=" nav-link">{link.name}</NavLink>
                     </li>))
                 }
+                <li className='md:ml-8 md:my-0 my-7 font-semibold' key="5">
+                        <NavLink to="/profile" className=" nav-link">
+                        <div className='flex justify-center'>
+                            <img src='/ImagesNV/profile.jpg' className='h-10 font-bold'></img>
+                            </div>
+                         </NavLink>
+                </li>
                 
             </ul>
             
