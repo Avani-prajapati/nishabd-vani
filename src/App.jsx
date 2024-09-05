@@ -13,7 +13,7 @@ function App() {
 
 console.log("Hello")
   return (
-    <div className="h-screen">
+    <div className="min-h-screen">
     <Navbar></Navbar>
     <Routes>
       <Route  index element={<Home></Home>}></Route>

@@ -66,8 +66,8 @@ const WebcamStream = ({handleClick}) => {
   }, [captureFrame, isWebSocketActive]);
 
   return (
-    <div className='text-center p-4 pt-2 flex flex-col items-center '>
-      <div className='flex justify-evenly'>
+    <div className='text-center md:p-4 pt-2 p-2 flex flex-col items-center '>
+      <div className='flex justify-between md:w-96 w-screen px-5 '>
         <div onClick={handleClick}>
           <button className='font-bold p-3 m-2 text-xl hover:text-blue-800 '>
                Back
@@ -89,7 +89,6 @@ const WebcamStream = ({handleClick}) => {
         height={480}
         style={{
           transform: 'scaleX(-1)', 
-          // marginTop: '20px',
         }}
         className='rounded'
       />
