@@ -14,7 +14,7 @@ const Header = () => {
       let [open, setOpen] =useState(false);
 
     return (
-        <div className='shadow-md w-full top-0 left-0'>
+        <div className='shadow-md border border-b-slate-200 w-full top-0 left-0'>
            <div className='md:flex items-center justify-between md:px-10 '>
             {/* logo section */}
             <div className='font-bold text-2xl cursor-pointer flex items-center gap-1  py-3 px-1'>
