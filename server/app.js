@@ -3,16 +3,20 @@ dotenv.config();
 
 import express from 'express';
 import { createServer } from 'http';
+import session from 'express-session';
+import cookieParser from 'cookie-parser';
 import path from 'path';
+import passport from 'passport';
 import cors from './config/corsConfig.js';
 import './config/multer.js';
-// import './config/passport.js';
 import './config/mongodb.js';
+import passportConfig from './config/passport.js';
 import websocketRoutes from './Router/websocketRoutes.js';
 import learningRoute from './Router/learningRouter.js';
 import ConversRoute from './Router/conversionRouter.js';
 import BoardRoute from './Router/BoardRouter.js';
-import EngBoardRoute from './Router/engBoardRouter.js'
+import EngBoardRoute from './Router/engBoardRouter.js';
+import studentRoutes from './Router/student.js';
 
 // Initialize Express and HTTP server
 const app = express();
@@ -25,9 +29,23 @@ const PORT = process.env.PORT || 5000;
 // Middleware to parse incoming requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
 // CORS setup
 app.use(cors);
+
+// Initialize session middleware
+app.use(session({
+  secret: 'mysecretkey',  // Replace with your secret key
+  resave: false,          // Avoid resaving unchanged sessions
+  saveUninitialized: true, // Save new (but unmodified) sessions
+  cookie: { maxAge: 24 * 60 * 60 * 1000 } // Session cookie valid for 1 day
+}));
+
+
+//Passport.js Authentication setUp
+app.use(passport.initialize());
+passportConfig(passport); // Passport config
 
 // Request logging middleware
 app.use((req, res, next) => {
@@ -41,6 +59,7 @@ app.use((req, res, next) => {
 });
 
 // API routes
+app.use('/students', studentRoutes);
 app.use('/learning', learningRoute);
 app.use('/conversion', ConversRoute);
 app.use('/gujBoard', BoardRoute)
