@@ -8,21 +8,35 @@ import Practice from "./component/Practice.jsx"
 import Profile from "./component/Profile.jsx"
 import Conversion from "./component/Conversion.jsx"
 import Footer from "./component/Footer.jsx"
+import SignIn from "./component/SingIn.jsx"
+import SignUp from "./component/SignUp.jsx"
+import { useState } from "react"
+import { signin,userContext } from "./context/CreateContext.jsx"
 
 function App() {
+  // const [sign,setSign] = useState(false);
+  const [user,setUser] = useState({});
 
 console.log("Hello")
   return (
     <div className="min-h-screen">
-    <Navbar></Navbar>
+     
+  <userContext.Provider value={[user,setUser]}>    
+    {/* <signin.Provider value={[sign,setSign]}> */}
+    { <Navbar></Navbar>}
     <Routes>
       <Route  index element={<Home></Home>}></Route>
       <Route path="/learning" element={<Learning></Learning>}></Route>
       <Route path="/conversion" element={<Conversion></Conversion>}></Route>
       <Route path="/practice" element={<Practice></Practice>}></Route>
       <Route path="/profile" element={<Profile></Profile>}></Route>
+      <Route path="/signin" element={<SignIn></SignIn>}></Route>
+      <Route path="/signup" element={<SignUp></SignUp>}></Route>
     </Routes>
-    <Footer></Footer>
+      {/* </signin.Provider> */}
+    </userContext.Provider>
+  { <Footer></Footer>}
+    
   </div>
   )
 }

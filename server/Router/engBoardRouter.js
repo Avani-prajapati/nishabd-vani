@@ -14,6 +14,7 @@ process.stdout.on('data', (data) => {
     try {
         // Attempt to parse the accumulated buffer as JSON
         const jsonResponse = JSON.parse(pythonOutputBuffer.trim());
+        console.log(jsonResponse);
         router.response.json({ prediction: jsonResponse.replace(/"/g, '').trim() });
         pythonOutputBuffer = ''; // Clear the buffer for the next message
         frameProcessing = false; // Reset the flag, allowing new frames to be processed

@@ -22,12 +22,12 @@ export default function Learning1() {
                 <div className="md:flex gap-4 ">
                   <div className='w-full my-2 md:my-0 p-2 py-5 bg-blue-100 rounded-md shadow  flex flex-col justify-center items-center gap-4'>
                     <h2 className='font-semibold'>English Alphabets</h2>
-                    <img src='/ImagesNV/ABC.png' className='h-32'></img>
+                    <img src='/ImagesNV/Learning1/ABC.png' className='h-32'></img>
                     <button onClick={()=>handleClick("alphabets1")} className='text-xl border shadow-md p-2 bg-white hover:bg-blue-400 hover:text-white rounded  px-4'>Start Learning</button>
                   </div>
                   <div className='w-full my-2 md:my-0 p-2 py-5 bg-blue-100 rounded-md shadow  flex flex-col justify-center items-center gap-4'>
                     <h2 className='font-semibold'>Gujarati Alphabets</h2>
-                    <img src='/ImagesNV/KKhaGa.png' className='h-32'></img>
+                    <img src='/ImagesNV/Learning1/KKhaGa.png' className='h-32'></img>
                     <button onClick={()=>handleClick("alphabets2")} className='text-xl border shadow-md p-2 bg-white hover:bg-blue-400 hover:text-white rounded  px-4'>Start Learning</button>
                   </div>
                   
@@ -40,17 +40,17 @@ export default function Learning1() {
                 <div className="md:flex gap-4   ">
                 <div className='w-full my-2 md:my-0 p-2 py-5 bg-red-100 rounded-md shadow  flex flex-col justify-center items-center gap-4'>
                     <h2 className='font-semibold'>Numbers</h2>
-                    <img src='/ImagesNV/number.png' className='h-32'></img>
+                    <img src='/ImagesNV/Learning1/number.png' className='h-32'></img>
                     <button onClick={()=>handleClick("maths1")} className='text-xl border shadow-md p-2 bg-white hover:bg-red-400 hover:text-white rounded  px-4'>Start Learning</button>
                   </div>
                   <div className='w-full my-2 md:my-0 p-2 py-5 bg-red-100 rounded-md shadow  flex flex-col justify-center items-center gap-4'>
                     <h2 className='font-semibold'>Tables</h2>
-                    <img src='/ImagesNV/table.png' className='h-32'></img>
+                    <img src='/ImagesNV/Learning1/table.png' className='h-32'></img>
                     <button onClick={()=>handleClick("maths2")} className='text-xl border shadow-md p-2 bg-white hover:bg-red-400 hover:text-white rounded  px-4'>Start Learning</button>
                   </div>
                   <div className='w-full my-2 md:my-0 p-2 py-5 bg-red-100 rounded-md shadow  flex flex-col justify-center items-center gap-4'>
                     <h2 className='font-semibold'>ArithMetic</h2>
-                    <img src='/ImagesNV/MathsLearn.png' className='h-32'></img>
+                    <img src='/ImagesNV/Learning1/MathsLearn.png' className='h-32'></img>
                     <button onClick={()=>handleClick("maths3")} className='text-xl border shadow-md p-2 bg-white hover:bg-red-400 hover:text-white rounded  px-4'>Start Learning</button>
                   </div>
                 </div>
@@ -61,7 +61,7 @@ export default function Learning1() {
                 <h2 className="font-medium mb-4 text-2xl">Science</h2>
                 <div className='w-full my-2 md:my-0 p-2 py-5 bg-purple-100 rounded-md shadow  flex flex-col justify-center items-center gap-4'>
                     <h2 className='font-semibold'>Science</h2>
-                    <img src='/ImagesNV/science.png' className='h-32'></img>
+                    <img src='/ImagesNV/Learning1/science.png' className='h-32'></img>
                     <button onClick={()=>handleClick("science1")} className='text-xl border shadow-md p-2 bg-white hover:bg-purple-400 hover:text-white rounded  px-4'>Start Learning</button>
                   </div>
               </div>
@@ -71,7 +71,7 @@ export default function Learning1() {
                 <h2 className="font-medium mb-4 text-2xl">Vocabulary</h2>
                 <div className='w-full my-2 md:my-0 p-2 py-5 bg-yellow-100 rounded-md shadow  flex flex-col justify-center items-center gap-4'>
                     <h2 className='font-semibold'>Vocabulary</h2>
-                    <img src='/ImagesNV/vocabulary.png' className='h-32 rounded-md'></img>
+                    <img src='/ImagesNV/Learning1/vocabulary.png' className='h-32 rounded-md'></img>
                     <button onClick={()=>handleClick("vocabulary1")} className='text-xl border shadow-md p-2 bg-white hover:bg-yellow-400  rounded  px-4'>Start Learning</button>
                   </div>
               </div>

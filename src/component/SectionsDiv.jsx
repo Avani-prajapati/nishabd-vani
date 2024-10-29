@@ -28,7 +28,7 @@ export default function SectionsDiv() {
             Learning
           </h1>
           <div className="flex justify-center">
-            <img src="/ImagesNV/learning2.webp" className="h-36"></img>
+            <img src="/ImagesNV/Home/learning2.webp" className="h-36"></img>
           </div>
           <h2 className="md:p-3 text-center font-semibold">
           In Learning, practice the Gujarati alphabet with signs, plus basics of math and science, all in a fun
@@ -61,7 +61,7 @@ export default function SectionsDiv() {
             Practice
           </h1>
           <div className="flex justify-center">
-            <img src="/ImagesNV/practice2.webp" className="h-44"></img>
+            <img src="/ImagesNV/Home/practice2.webp" className="h-44"></img>
           </div>
           <h2 className="font-semibold text-center md:pb-4">
           Practice here, track your progress, and take teacher-created tests on our platform.
@@ -94,7 +94,7 @@ export default function SectionsDiv() {
             Conversion
           </h1>
           <div className="flex justify-center md:mt-2">
-            <img src="/ImagesNV/conversion2.jpg" className="h-36"></img>
+            <img src="/ImagesNV/Home/conversion2.jpg" className="h-36"></img>
           </div>
           <h2 className="text-center font-semibold md:p-4">
           Use this section to convert sign to text and text to sign with your camera.

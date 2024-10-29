@@ -12,8 +12,8 @@ export default function CarouselWithIndicators() {
             >
               
             <img
-              src="/ImagesNV/homeimage1.jpeg"
-              className="block h-[32rem] w-full"
+              src="/ImagesNV/Home/homeimage1.jpeg"
+              className="block h-[34rem] w-full"
               alt="..."
             />
         </TECarouselItem>
@@ -22,8 +22,8 @@ export default function CarouselWithIndicators() {
             className="relative float-left hidden -mr-[100%] w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
           >
             <img
-              src="/ImagesNV/homeimage2.webp"
-              className="block h-[32rem] w-full"
+              src="/ImagesNV/Home/homeimage2.webp"
+              className="block h-[34rem] w-full"
               alt="..."
             />
           </TECarouselItem>
@@ -32,8 +32,8 @@ export default function CarouselWithIndicators() {
             className="relative float-left -mr-[100%] hidden w-full transition-transform duration-[600ms] ease-in-out motion-reduce:transition-none"
           >
             <img
-              src="/ImagesNV/homeimage3.avif"
-              className="block h-[32rem] w-full "
+              src="/ImagesNV/Home/homeimage3.avif"
+              className="block h-[34rem] w-full "
               alt="..."
             />
           </TECarouselItem>

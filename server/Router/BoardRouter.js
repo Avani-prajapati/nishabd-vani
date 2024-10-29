@@ -14,6 +14,7 @@ process.stdout.on('data', (data) => {
     try {
         // Attempt to parse the accumulated buffer as JSON
         const jsonResponse = JSON.parse(pythonOutputBuffer.trim());
+        console.log(jsonResponse);
         router.response.json({ prediction: jsonResponse.replace(/"/g, '').trim() });
         pythonOutputBuffer = ''; // Clear the buffer for the next message
         frameProcessing = false; // Reset the flag, allowing new frames to be processed
@@ -28,7 +29,9 @@ process.stderr.on('data', (data) => {
 });
 
 router.post('/', (req, res) => {
+    // console.log(req.body);
     const { pixels } = req.body;
+     console.log(pixels);
 
     if (!pixels) {
         return res.status(400).json({ error: 'Pixels data is required' });

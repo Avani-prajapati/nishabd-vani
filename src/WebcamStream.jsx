@@ -36,7 +36,7 @@ const WebcamStream = ({handleClick}) => {
       setGesture(null)
     } else {
       try {
-        const response = await fetch('http://localhost:5000/start-websocket');
+        const response = await fetch('http://localhost:5000/start-websocket/guj');
         const message = await response.text();
 
         if (message.includes('WebSocket connection is now active.')) {
