@@ -11,7 +11,6 @@ let frameProcessing = false;
 
 // Spawn the persistent Python process
 const pythonProcess = spawn('python', ['./gesture_recognition.py']);
-const pythonProcess2 = spawn('python', ['./gesture_eng_recognition.py']);
 
 pythonProcess.stdout.on('data', (data) => {
   pythonOutputBuffer += data.toString();
@@ -29,28 +28,7 @@ pythonProcess.stdout.on('data', (data) => {
   }
 });
 
-pythonProcess2.stdout.on('data', (data) => {
-  pythonOutputBuffer += data.toString();
-
-  try {
-    const jsonResponse = JSON.parse(pythonOutputBuffer.trim());
-    const io = getIOInstance();
-    console.log(jsonResponse)
-    if (isWebSocketActive() && io) {
-      io.emit('result', jsonResponse);
-    }
-    pythonOutputBuffer = ''; // Clear the buffer for the next message
-    frameProcessing = false; // Reset the flag, allowing new frames to be processed
-  } catch (error) {
-    // If parsing fails, keep accumulating data until a full JSON string is received
-  }
-});
-
 pythonProcess.stderr.on('data', (data) => {
-  console.error(`Python script error: ${data}`);
-});
-
-pythonProcess2.stderr.on('data', (data) => {
   console.error(`Python script error: ${data}`);
 });
 
@@ -73,15 +51,7 @@ export const startWebSocket = (req, res) => {
       fs.writeFileSync(filePath, base64Data, 'base64');
 
       frameProcessing = true;
-      console.log(req.params.lang)
-    if(req.params.lang=="guj"){
-      console.log("Sending to Gujarati model")
       pythonProcess.stdin.write('true\n');
-    }
-    else{
-      console.log("Sending to English model")
-      pythonProcess2.stdin.write('true\n')
-    }
     });
 
     socket.on('disconnect', () => {

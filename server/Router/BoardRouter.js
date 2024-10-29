@@ -19,6 +19,7 @@ process.stdout.on('data', (data) => {
         pythonOutputBuffer = ''; // Clear the buffer for the next message
         frameProcessing = false; // Reset the flag, allowing new frames to be processed
     } catch (error) {
+        console.log(error)
         // If parsing fails, keep accumulating data until a full JSON string is received
     }
 });
