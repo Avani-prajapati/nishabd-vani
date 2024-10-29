@@ -35,7 +35,7 @@ const Numbers = () => {
           key={i}
           src={data.Basket}
           alt="Basket"
-          className="size-11"
+          className={`${number < 4?"size-24":`${number < 10?"size-14":`size-10` }`}`}
         />
       );
     }
@@ -43,10 +43,10 @@ const Numbers = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-8 max-h-screen bg-white">
+    <div className="flex flex-col items-center mt-8 max-h-screen ">
       <h1 className="text-3xl font-bold mb-4">Numbers</h1>
 
-      <div className="bg-white p-10 w-96 rounded-lg shadow-lg flex flex-col items-center justify-center">
+      <div className="bg-white p-10 w-96 h-96 rounded-lg shadow-lg bg-orange-50 flex flex-col items-center justify-center">
         {data != null ?
           <>
             <img

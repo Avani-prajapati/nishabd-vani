@@ -1,7 +1,12 @@
 import React from 'react'
+import ProfilePage from './ProfilePage'
+import SignIn from './SingIn'
 
 export default function Profile() {
   return (
-    <div className='px-8 text-2xl text-center'>Profile</div>
+    // <SignIn></SignIn>
+    <div className='px-14'>
+    <ProfilePage></ProfilePage>
+    </div>
   )
 }
