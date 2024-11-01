@@ -17,7 +17,9 @@ import ConversRoute from './Router/conversionRouter.js';
 import BoardRoute from './Router/BoardRouter.js';
 import EngBoardRoute from './Router/engBoardRouter.js';
 import studentRoutes from './Router/student.js';
-
+import fakerRoute from './Router/Faker.js';
+import quizRoute from './Router/QuizRoute.js';
+import client from 'prom-client';
 // Initialize Express and HTTP server
 const app = express();
 const server = createServer(app);
@@ -25,11 +27,29 @@ const server = createServer(app);
 app.set('server', server); // Make the server instance accessible in other modules
 
 const PORT = process.env.PORT || 5000;
+const register = new client.Registry();
+
+// Default metrics collection (memory, CPU, etc.)
+client.collectDefaultMetrics({ register });
+
+// Example of a custom metric (Counter)
+const httpRequestCounter = new client.Counter({
+  name: 'http_requests_total',
+  help: 'Total number of HTTP requests',
+  labelNames: ['method', 'route', 'status_code'],
+});
 
 // Middleware to parse incoming requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
+// Middleware to increase the counter on every request
+app.use((req, res, next) => {
+  res.on('finish', () => {
+    httpRequestCounter.labels(req.method, req.route ? req.route.path : req.url, res.statusCode).inc();
+  });
+  next();
+});
 
 // CORS setup
 app.use(cors);
@@ -62,18 +82,24 @@ app.use((req, res, next) => {
 app.use('/students', studentRoutes);
 app.use('/learning', learningRoute);
 app.use('/conversion', ConversRoute);
-app.use('/gujBoard', BoardRoute)
-app.use('/EngBoard', EngBoardRoute)
+app.use('/gujBoard', BoardRoute);
+app.use('/EngBoard', EngBoardRoute);
+app.use('/fake-user', fakerRoute);
+app.use('/quiz', quizRoute);
 app.use('/', websocketRoutes); // This will handle the WebSocket initialization route
 
 // Root route
 app.get('/', (req, res) => {
   res.send("Server is live.... ");
 });
+app.get('/metrics', async (req, res) => {
+  res.set('Content-Type', register.contentType);
+  res.end(await register.metrics());
+});
 
 // Global error handling middleware
 app.use((err, req, res, next) => {
-  console.error(err.message); // Log the error to the console
+  console.error(err); // Log the error to the console
   const statusCode = err.status || 500; // Use the error status if available, otherwise use 500
   res.status(statusCode).json({
     error: {

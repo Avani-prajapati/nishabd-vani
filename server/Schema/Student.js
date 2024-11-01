@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+import AttemptedQuiz from './AttemptedQuiz.js';
 
 const dailyActivitySchema = new mongoose.Schema({
     date: { type: Date, required: true },
-    active: { type: Boolean, default: false }
+    activeLevel: { type: Number, default: 0 }
 });
 
 const studentSchema = new mongoose.Schema({
@@ -20,48 +21,23 @@ const studentSchema = new mongoose.Schema({
         type: String, 
         required: true 
     },
-    phoneNumber: {
-        type: String,
-        required: true,
-        unique: true,
-        validate: {
-          validator: function(v) {
-            return /^[6-9]\d{9}$/.test(v);  // Indian phone number format (10 digits, starting with 6-9)
-          },
-          message: props => `${props.value} is not a valid Indian phone number!`
-        },
-    },
-    address: {
-        street: { type: String, required: true },
-        city: { type: String, required: true },
-        state: { type: String, required: true },
-        zipCode: { type: String, required: true }
-    },
-    guardianName: 
-        { type: String,
-        required: true
-     },
-    guardianContact: { type: String,
-        required: true,
-        unique: true,
-        validate: {
-          validator: function(v) {
-            return /^[6-9]\d{9}$/.test(v);  // Indian phone number format (10 digits, starting with 6-9)
-          },
-          message: props => `${props.value} is not a valid Indian phone number!`
-        } 
-    },
-    disabilityType: { 
+    username : {
         type: String, 
-        enum : ["Deaf", "Mute" ,"Both"],
-        required: true 
+        required: true,
+        unique: true 
     },
-    schoolName: { 
+    gurdianEmail: { 
         type: String, 
-        required: true 
+        required: true,
+        unique: true 
     },
-    assignedTeacher: { type: String, required: true },
     dailyActivity: [dailyActivitySchema],
+    attemptedQuiz: {
+        science: { type: [AttemptedQuiz.schema], default: [] }, // Array of QuizAttempt objects
+        maths: { type: [AttemptedQuiz.schema], default: [] },
+        alpha: { type: [AttemptedQuiz.schema], default: [] },
+        word: { type: [AttemptedQuiz.schema], default: [] },
+  },
 }, { timestamps: true });
 
 studentSchema.pre('save', async function (next) {
