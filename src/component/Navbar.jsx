@@ -5,16 +5,16 @@ import { BookOpenIcon, Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/
 import { userContext,signin } from '../context/CreateContext';
 
 const Header = () => {
-    let Links =[
-        {name:"Home",link:"/",key :1},
-        {name:"Learning",link:"/learning",key :2},
-        {name:"Practice",link:"/practice",key :3},
-        {name:"Conversion",link:"/conversion",key :4},
-      ];
+ 
       let [open, setOpen] =useState(false);
-
-//    const[sign,setSign] = useContext(signin)   
+ 
   const [user,setUser] = useContext(userContext);
+  let Links =[
+    {name:"Home",link:"/",key :1},
+    {name:"Learning",link:"/learning",key :2},
+    {name:"Conversion",link:"/conversion",key :3},
+    {name:`${user == null ?'Practice':'Sign Up'}`,link:`${user == null ?'/practice':'/signup'}`,key :4},
+  ];
 
     return (
         <div className='shadow-md border border-b-slate-200 w-full top-0 left-0'>
@@ -38,7 +38,7 @@ const Header = () => {
                     </li>))
                 }
                 <li className='md:ml-8 md:my-0 my-7 font-semibold' key="5">
-                    {user !== null?  <NavLink to="/profile" className=" nav-link">
+                    {user === null?  <NavLink to="/profile" className=" nav-link">
                         <div className='flex justify-center'>
                             <img src='/ImagesNV/Navbar/profile.jpg' className='h-10 font-bold'></img>
                             </div>

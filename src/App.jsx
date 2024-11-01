@@ -14,7 +14,7 @@ import { useState } from "react"
 import { signin,userContext } from "./context/CreateContext.jsx"
 
 function App() {
-  // const [sign,setSign] = useState(false);
+  const [sign,setSign] = useState(true);
   const [user,setUser] = useState({});
 
 console.log("Hello")
@@ -22,8 +22,8 @@ console.log("Hello")
     <div className="min-h-screen">
      
   <userContext.Provider value={[user,setUser]}>    
-    {/* <signin.Provider value={[sign,setSign]}> */}
-    { <Navbar></Navbar>}
+    <signin.Provider value={[sign,setSign]}>
+    { sign && <Navbar></Navbar>}
     <Routes>
       <Route  index element={<Home></Home>}></Route>
       <Route path="/learning" element={<Learning></Learning>}></Route>
@@ -33,9 +33,9 @@ console.log("Hello")
       <Route path="/signin" element={<SignIn></SignIn>}></Route>
       <Route path="/signup" element={<SignUp></SignUp>}></Route>
     </Routes>
-      {/* </signin.Provider> */}
+      </signin.Provider>
     </userContext.Provider>
-  { <Footer></Footer>}
+  { sign &&  <Footer></Footer>}
     
   </div>
   )
