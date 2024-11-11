@@ -7,7 +7,7 @@ const SlidingDictionary = ({handleWord}) => {
   const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
-    axios.get('http://localhost:5000/conversion/') 
+    axios.get('http://localhost:5000/conversion/',{withCredentials:true}) 
       .then((response) => {
         setDictionary(response.data);
         setLoading(false);

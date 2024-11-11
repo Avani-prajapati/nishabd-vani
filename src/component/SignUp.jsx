@@ -119,7 +119,7 @@ const SignUp = () => {
         email,
         password,
         guardianEmail
-      });
+      },{withCredentials:true});
 
       if (response.data.success) {
         setSign(true); // Update sign-in status in context

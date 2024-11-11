@@ -92,37 +92,37 @@ router.get('/profile', passport.authenticate('jwt', { session: false }), async (
         return res.status(404).json({ message: 'Student not found' });
       }
 
-      // Create quiz summary
-      const quizSummary = {};
-      student.quizResults.forEach((quiz) => {
-        if (!quizSummary[quiz.topic]) {
-          quizSummary[quiz.topic] = [];
-        }
-        quizSummary[quiz.topic].push(quiz.score);
-      });
+      // // Create quiz summary
+      // const quizSummary = {};
+      // student.quizResults.forEach((quiz) => {
+      //   if (!quizSummary[quiz.topic]) {
+      //     quizSummary[quiz.topic] = [];
+      //   }
+      //   quizSummary[quiz.topic].push(quiz.score);
+      // });
 
-      // Convert the object into an array of topics with their respective scores
-      const quizData = Object.keys(quizSummary).map(topic => ({
-        topic: topic,
-        Quiz_array: quizSummary[topic]
-      }));
+      // // Convert the object into an array of topics with their respective scores
+      // const quizData = Object.keys(quizSummary).map(topic => ({
+      //   topic: topic,
+      //   Quiz_array: quizSummary[topic]
+      // }));
 
-      // Get current month and activity data
-      const now = new Date();
-      const monthName = now.toLocaleString('default', { month: 'long' }); // Get current month name (e.g., November)
-      const monthlyActivityArray = getMonthlyActivity(student.dailyActivity);
+      // // Get current month and activity data
+      // const now = new Date();
+      // const monthName = now.toLocaleString('default', { month: 'long' }); // Get current month name (e.g., November)
+      // const monthlyActivityArray = getMonthlyActivity(student.dailyActivity);
 
-      // Create a response object with student data and additional info
-      const responseData = {
-        ...student.toObject(),  // Converts Mongoose document to plain JS object
-        month: monthName,
-        activityArray: monthlyActivityArray,
-        quizData: quizData,
-      };
-      delete responseData.dailyActivity;
-      delete responseData.quizResults;
-      // Send response
-      res.json(responseData);
+      // // Create a response object with student data and additional info
+      // const responseData = {
+      //   ...student.toObject(),  // Converts Mongoose document to plain JS object
+      //   month: monthName,
+      //   activityArray: monthlyActivityArray,
+      //   quizData: quizData,
+      // };
+      // delete responseData.dailyActivity;
+      // delete responseData.quizResults;
+      // // Send response
+      res.json(student);
 
   } catch (error) {
     res.status(500).json({ message: 'Error fetching user profile' });

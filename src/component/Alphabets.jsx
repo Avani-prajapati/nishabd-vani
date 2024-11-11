@@ -18,7 +18,9 @@ export default function Alphabets({ num }) {
   useEffect(() => {
     setIsCorrect(null);
     const endpoint = number == 1 ? "alphabetEng" : "alphabetGuj";
-    axios.get(`http://localhost:5000/learning/${endpoint}`)
+    axios.get(`http://localhost:5000/learning/${endpoint}`,
+      {withCredential:true}
+    )
       .then(res => {
         console.log(res.data);
         setData(res.data);
@@ -32,7 +34,9 @@ export default function Alphabets({ num }) {
    setIsCorrect(false)
     const endpoint = number == 1 ? "alphabetEng" : "alphabetGuj";
     const action = s == "prev" ? "prev" : "next";
-    axios.get(`http://localhost:5000/learning/${endpoint}/${action}`)
+    axios.get(`http://localhost:5000/learning/${endpoint}/${action}`,
+      {withCredentials:true}
+    )
       .then(res => {
         console.log(res.data);
         setData(res.data);

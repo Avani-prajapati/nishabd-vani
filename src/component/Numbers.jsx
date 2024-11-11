@@ -5,7 +5,9 @@ const Numbers = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/learning/Number`)
+    axios.get(`http://localhost:5000/learning/Number`,
+      {withCredentials:true}
+    )
       .then(res => {
         console.log(res.data);
         setData(res.data);
@@ -17,7 +19,9 @@ const Numbers = () => {
 
   function handleClick(s) {
     const action = s === "prev" ? "prev" : "next";
-    axios.get(`http://localhost:5000/learning/Number/${action}`)
+    axios.get(`http://localhost:5000/learning/Number/${action}`,
+      {withCredentials:true}
+    )
       .then(res => {
         console.log(res.data);
         setData(res.data);
@@ -46,7 +50,7 @@ const Numbers = () => {
     <div className="flex flex-col items-center mt-8 max-h-screen ">
       <h1 className="text-3xl font-bold mb-4">Numbers</h1>
 
-      <div className="bg-white p-10 w-96 h-96 rounded-lg shadow-lg bg-orange-50 flex flex-col items-center justify-center">
+      <div className=" p-10 w-96 h-96 rounded-lg shadow-lg bg-orange-50 flex flex-col items-center justify-center">
         {data != null ?
           <>
             <img

@@ -17,7 +17,7 @@ export default function TextToSign({ handleClick }) {
   const generateSignImage = () => {
     setSignImage(null);
     axios
-      .post('http://localhost:5000/conversion', { word })
+      .post('http://localhost:5000/conversion', { word },{withCredentials:true})
       .then((res) => {
         setSignImage(res.data.cloud_location);
       })

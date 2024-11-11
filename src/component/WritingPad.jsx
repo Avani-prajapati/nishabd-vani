@@ -74,7 +74,7 @@ const WritingPad = () => {
 
   const addDataAction = () => {
     const pixels = getPixels();
-    axios.post("http://localhost:5000/gujBoard", { pixels })
+    axios.post("http://localhost:5000/gujBoard", { pixels },{withCredentials:true})
       .then(res => {console.log(res.data.prediction)
         setans(res.data.prediction)
       })
@@ -83,7 +83,7 @@ const WritingPad = () => {
 
   const practiceAction = () => {
     const pixels = getPixels();
-    axios.post("http://localhost:5000/EngBoard", { pixels })
+    axios.post("http://localhost:5000/EngBoard", { pixels },{withCredentials:true})
       .then(res => {console.log(res)
         setans(res.data.prediction)
       })

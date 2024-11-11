@@ -22,9 +22,7 @@ export default function Question() {
               <img src='/ImagesNV/Home/conver2.png' className='md:h-60 '></img>
             </div>
           <div className='md:basis-1/2 p-3 transition' >
-            <h5>
-            <h3 className='font-bold'>Answer:</h3>  Gujarati Sign Language (GSL) is a visual language used by the deaf and mute community in Gujarat, India. It consists of hand gestures, facial expressions, and body movements to convey words, sentences, and concepts. GSL is a regional variant of Indian Sign Language (ISL), adapted to the linguistic and cultural nuances of Gujarati speakers.   
-            </h5>
+            <h3 className='font-bold'>Answer:</h3>  Gujarati Sign Language (GSL) is a visual language used by the deaf and mute community in Gujarat, India. It consists of hand gestures, facial expressions, and body movements to convey words, sentences, and concepts. GSL is a regional variant of Indian Sign Language (ISL), adapted to the linguistic and cultural nuances of Gujarati speakers.      
             <h5>
             , While Gujarati Sign Language is a variant of Indian Sign Language (ISL), it incorporates specific signs and expressions that are unique to the Gujarati culture and language. GSL reflects the vocabulary, idioms, and cultural practices of Gujarat, making it distinct from the broader ISL used across India.  
             </h5>
@@ -48,9 +46,7 @@ export default function Question() {
               <img src='/ImagesNV/Home/conver2.png' className='md:h-60 '></img>
             </div>
           <div className='md:basis-1/2 p-3' >
-            <h5>
             <h3 className='font-bold'>Answer:</h3> Learning Gujarati Sign Language is crucial for effective communication within the deaf and mute community in Gujarat. It helps bridge the communication gap, fosters inclusion, and enables deaf and mute individuals to express themselves fully in their native language. It also strengthens community bonds and preserves the cultural heritage of Gujarat.
-            </h5>
             <h5>
             And The Gujarati deaf community faces several challenges, including limited access to formal sign language education, a shortage of qualified sign language interpreters, and societal stigmas. Additionally, many deaf individuals in Gujarat may have limited exposure to GSL in their early years, making it harder for them to acquire the language later in life. The platform aims to address these challenges by providing accessible and high-quality GSL resources.
             </h5>
