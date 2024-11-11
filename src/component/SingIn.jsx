@@ -120,7 +120,7 @@ const SignIn = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:5000/students/login', { email, password ,withCredential:true})
+    axios.post('http://localhost:5000/students/login', { email, password ,withCredentials:true})
       .then((res) => {
         localStorage.setItem('token', res.data.token);
         setSign(true);
@@ -145,7 +145,7 @@ const SignIn = () => {
           <h2 className="text-2xl font-semibold">Sign In</h2>
           <form className="w-3/4 space-y-4" onSubmit={handleSubmit}>
             
-            {/* Role Selection */}
+            {/* Role Selection
             <div className="flex items-center gap-4">
               <label className="font-bold text-gray-600">Role:</label>
               <label className="flex items-center gap-2">
@@ -156,7 +156,7 @@ const SignIn = () => {
                 <input type="radio" name="role" value="Teacher" className="focus:ring-blue-200" />
                 <span>Teacher</span>
               </label>
-            </div>
+            </div> */}
 
             {/* Email and Password Fields */}
             <input

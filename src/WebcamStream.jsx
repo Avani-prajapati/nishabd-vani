@@ -141,7 +141,7 @@ const WebcamStream = ({ handleClick }) => {
       setStart(false);
       setGesture(null);
     } else {
-      axios.get('http://localhost:5000/start-websocket/guj',
+      axios.get('http://localhost:5000/start-websocket',
         {withCredentials:true}
       )
         .then((response) => {

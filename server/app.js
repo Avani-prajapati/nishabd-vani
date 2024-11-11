@@ -69,6 +69,12 @@ app.use(session({
 app.use(passport.initialize());
 passportConfig(passport); // Passport config
 
+app.use((req,res,next)=>{
+  res.setHeader('Cache-Control','no-store');
+  next();
+})
+
+
 // Request logging middleware
 app.use((req, res, next) => {
   const start = Date.now();
@@ -128,6 +134,7 @@ app.use((err, req, res, next) => {
     }
   });
 });
+
 
 app.use((req, res, next) => {
   res.status(404).json({ title: '404', message: 'Page Not Found' });
