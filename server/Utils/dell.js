@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import mongoose from 'mongoose';
-import Quiz from './Quiz.js';
+import Quiz from '../Schema/Quiz.js';
 
 const secret = process.env.DB;
 console.log(secret)
