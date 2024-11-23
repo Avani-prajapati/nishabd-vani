@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
-export default function Alphabets({ num }) {
+export default function Alphabets({ num,Click }) {
   const [number, setNumber] = useState(num);
   const [isQuiz, setIsQuiz] = useState(false);
   const [data, setData] = useState({});
@@ -19,7 +19,7 @@ export default function Alphabets({ num }) {
     setIsCorrect(null);
     const endpoint = number == 1 ? "alphabetEng" : "alphabetGuj";
     axios.get(`http://localhost:5000/learning/${endpoint}`,
-      {withCredential:true}
+      {withCredentials:true}
     )
       .then(res => {
         console.log(res.data);
@@ -73,6 +73,9 @@ export default function Alphabets({ num }) {
 
   return (
     <>
+     <button className='font-bold my-3 text-xl w-full  hover:text-blue-800 ' onClick={Click}>
+              {'<-'}  Back
+          </button>
       <div className="flex flex-col items-center justify-center max-h-screen basis-4/6 ">
         <div className='block text-center text-2xl font-bold'>{num == 1 ? "English Alphabets" : "ગુજરાતી મૂળાક્ષરો"}</div>
         <div className={`bg-white rounded-xl mt-3  mx-4 sm:mx-0 shadow-lg p-8  `}>

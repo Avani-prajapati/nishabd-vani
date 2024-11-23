@@ -3,7 +3,7 @@ import { TECarousel, TECarouselItem } from "tw-elements-react";
 
 export default function CarouselWithIndicators() {
   return (
-    <>
+    <div className="relative">
       <TECarousel showControls showIndicators ride="carousel">
         <div className="relative w-auto  after:clear-both after:block after:content-['']">
           <TECarouselItem
@@ -39,6 +39,6 @@ export default function CarouselWithIndicators() {
           </TECarouselItem>
         </div>
       </TECarousel>
-    </>
+    </div>
   );
 }

@@ -57,24 +57,24 @@ export default function Learning1() {
               </div>
               
               {/* Science Section */}
-              <div className="p-4  rounded-md ">
+              {/* <div className="p-4  rounded-md ">
                 <h2 className="font-medium mb-4 text-2xl">Science</h2>
                 <div className='w-full my-2 md:my-0 p-2 py-5 bg-purple-100 rounded-md shadow  flex flex-col justify-center items-center gap-4'>
                     <h2 className='font-semibold'>Science</h2>
                     <img src='/ImagesNV/Learning1/science.png' className='h-32'></img>
                     <button onClick={()=>handleClick("science1")} className='text-xl border shadow-md p-2 bg-white hover:bg-purple-400 hover:text-white rounded  px-4'>Start Learning</button>
                   </div>
-              </div>
+              </div> */}
               
               {/* Vocabulary Section */}
-              <div className="p-4  rounded-md">
+              {/* <div className="p-4  rounded-md">
                 <h2 className="font-medium mb-4 text-2xl">Vocabulary</h2>
                 <div className='w-full my-2 md:my-0 p-2 py-5 bg-yellow-100 rounded-md shadow  flex flex-col justify-center items-center gap-4'>
                     <h2 className='font-semibold'>Vocabulary</h2>
                     <img src='/ImagesNV/Learning1/vocabulary.png' className='h-32 rounded-md'></img>
                     <button onClick={()=>handleClick("vocabulary1")} className='text-xl border shadow-md p-2 bg-white hover:bg-yellow-400  rounded  px-4'>Start Learning</button>
                   </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>)

@@ -13,7 +13,7 @@ export default function Home() {
 }, [setSign]);
 
   return (
-    <div className='md:px-8 '>  
+    <div className='md:px-8 min-h-screen '>  
      <Carousel></Carousel>
      <SectionsDiv></SectionsDiv>
      <hr></hr>

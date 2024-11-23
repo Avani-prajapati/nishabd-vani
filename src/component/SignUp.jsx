@@ -101,7 +101,8 @@ const SignUp = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [guardianEmail, setGuardianEmail] = useState('');
+  // const [gurdianEmail, setGurdianEmail] = useState('');
+  const [gurdianEmail,setGurdianEmail]=useState('');
 
   useEffect(() => {
     setSign(false);
@@ -111,26 +112,23 @@ const SignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      // Send data to backend for sign-up
-      const response = await axios.post('http://localhost:5000/students/register', {
-        name,
-        username,
-        email,
-        password,
-        guardianEmail
-      },{withCredentials:true});
-
-      if (response.data.success) {
-        setSign(true); // Update sign-in status in context
-        navigate('/signin'); // Redirect to the SignIn page
-      } else {
-        alert(response.data.message); // Display error message
-      }
-    } catch (error) {
-      console.error("Error during sign-up:", error);
-      alert("An error occurred while signing up.");
-    }
+    axios.post('http://localhost:5000/students/register', {
+          name,
+          username,
+          email,
+          password,
+          gurdianEmail,
+          withCredentials:true
+        },)
+        .then(response=>{
+                setSign(true); 
+                navigate('/signin'); 
+              } 
+        )
+        .catch(error=>{
+          console.error("Error during sign-up:", error);
+          alert(error.response.data.message);
+        })
   };
 
   return (
@@ -195,8 +193,8 @@ const SignUp = () => {
               type="email"
               placeholder="Guardian's Email"
               className="w-full p-3 border border-gray-300 rounded-md hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-200"
-              value={guardianEmail}
-              onChange={(e) => setGuardianEmail(e.target.value)}
+              value={gurdianEmail}
+              onChange={(e) => setGurdianEmail(e.target.value)}
             />
            
             {/* Submit button */}
@@ -208,12 +206,7 @@ const SignUp = () => {
             </button>
             
             {/* Google Sign-Up button */}
-            <button
-              type="button"
-              className="w-full border border-gray-300 text-gray-600 p-3 rounded-md hover:bg-gray-100 transition flex justify-center items-center space-x-2"
-            >
-              <span>Sign up with Google</span>
-            </button>
+           
           </form>
         </div>
       </div>

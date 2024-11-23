@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Tables() {
+export default function Tables({Click}) {
   const [visibleItems, setVisibleItems] = useState(0);
   const [key, setKey] = useState(0);
   const [selectedNumber, setSelectedNumber] = useState(0); 
@@ -62,8 +62,13 @@ export default function Tables() {
         </div>
         ))}
       </div>
-
-   
+     
+      
+     <div className='w-full'>
+     <button className='font-bold my-3 text-xl hover:text-blue-800 text-center w-full ' onClick={Click}>
+              {'<-'}  Back
+          </button>
+     
       <div className="md:p-10 p-4 m-4 md:m-0 bg-orange-100 rounded-lg shadow-lg md:mx-8 h-[32rem] basis-5/6">
         <h1 className="text-3xl font-bold mb-4 text-center">Multiplication Table of {selectedNumber}</h1>
         {selectedNumber == 0 ?
@@ -95,6 +100,7 @@ export default function Tables() {
           </div>
         </div>
         }
+      </div>
       </div>
     </div>
   );

@@ -87,7 +87,7 @@ const Header = () => {
         </div>
 
         {/* Links Section */}
-        <ul className={`md:flex md:items-center text-xl text-center transition-all duration-500 ease-in ${open ? 'top-12' : 'top-[-490px]'} absolute md:static w-full md:w-auto bg-white md:bg-transparent md:pl-0`}>
+        <ul className={`md:flex md:items-center md:pb-0 my-2 py-1  md:static bg-white md:bg-transparent  md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0  transition-all duration-500 ease-in ${open ? 'top-12 ' : 'top-[-490px] absolute'} text-xl text-center `}>
           {Links.map(link => (
             <li key={link.key} className="md:ml-8 my-7 md:my-0 font-semibold">
               <NavLink to={link.link} className="nav-link">{link.name}</NavLink>

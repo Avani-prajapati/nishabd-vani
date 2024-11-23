@@ -12,9 +12,9 @@ export default function Learning2({handleClick,click,section}) {
        console.log(num)
         switch (sec) {
           case 'alphabets':
-            return <Alphabets num={num} ></Alphabets>;
+            return <Alphabets num={num} Click={handleClick} ></Alphabets>;
           case 'maths':
-            return <Maths num={num}></Maths>;
+            return <Maths num={num} Click={handleClick}></Maths>;
           case 'science':
             return <Science num={num} />;
           case 'vocabulary':
@@ -26,10 +26,6 @@ export default function Learning2({handleClick,click,section}) {
   return (
     <>
     <div className='text-center'>
-
-    <button className='font-bold my-3 text-xl hover:text-blue-800 ' onClick={handleClick}>
-              {'<-'}  Back
-          </button>
     </div>
     <div>
       {renderSection()}

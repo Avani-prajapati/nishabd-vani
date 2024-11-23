@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Numbers = () => {
+const Numbers = ({Click}) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -48,6 +48,9 @@ const Numbers = () => {
 
   return (
     <div className="flex flex-col items-center mt-8 max-h-screen ">
+       <button className='font-bold my-3 text-xl hover:text-blue-800 ' onClick={Click}>
+              {'<-'}  Back
+          </button>
       <h1 className="text-3xl font-bold mb-4">Numbers</h1>
 
       <div className=" p-10 w-96 h-96 rounded-lg shadow-lg bg-orange-50 flex flex-col items-center justify-center">

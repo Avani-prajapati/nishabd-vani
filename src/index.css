@@ -54,3 +54,13 @@
     background-color: #E2E8F0;
   }
 
+  .correct {
+    background-color: #4CAF50;  /* Green background for correct answers */
+    color: white;
+  }
+  
+  .wrong {
+    background-color: #F44336;  /* Red background for wrong answers */
+    color: white;
+  }
+  

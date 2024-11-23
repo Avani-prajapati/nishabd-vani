@@ -10,7 +10,7 @@ export default function Practice() {
     setSign(true);
   }, [setSign]);
   return (
-    <div className='px-8 text-2xl'>
+    <div className='md:px-8  text-2xl'>
     <PracticeHome></PracticeHome>
     </div>
   )

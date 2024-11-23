@@ -2,18 +2,19 @@ import React from 'react';
 import { useEffect ,useState} from 'react';
 import Tables from './Tables';
 import Numbers from './Numbers';
+import ArithmeticPage from './ArithmeticPage';
 
-const Maths = ({num}) => {
+const Maths = ({num,Click}) => {
 
   const renderSection = () => {
     console.log(num)
      switch (num) {
        case '1' :
-         return <Numbers></Numbers>;
+         return <Numbers Click={Click}></Numbers>;
        case '2':
-         return <Tables></Tables>;
+         return <Tables Click={Click}></Tables>;
        case '3':
-         return <>Arithmetic</>;
+         return <ArithmeticPage Click={Click}></ArithmeticPage>;
      }
    };
 
