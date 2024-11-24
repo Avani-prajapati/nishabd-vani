@@ -44,13 +44,7 @@ async function generateQuiz(currentAlphabet, alphabetSet) {
   return quiz;
 }
 
-
-
-
-
-
 // English alphabet route: Start Learning
-
 export const alphabetEng = wrapAsync(async (req, res) => {
   // Initialize session state if not already initialized
 
@@ -67,8 +61,6 @@ export const alphabetEng = wrapAsync(async (req, res) => {
 
   return res.json(data);
 });
-
-
 
 // Next alphabet route
 export const alphabetEngNext = wrapAsync(async (req, res) => {
@@ -95,7 +87,6 @@ export const alphabetEngNext = wrapAsync(async (req, res) => {
     return res.json(data);
   }
 });
-
 
 // Previous alphabet route
 export const alphabetEngPrev = wrapAsync(async (req, res) => {
