@@ -41,7 +41,7 @@ export default function TextToSign({ handleClick }) {
       {/* Hamburger menu for small screens */}
       <button
         onClick={toggleDictionary}
-        className="sm:hidden block border border-b-2  shadow-md bg-blue-100 mb-2 text-xl font-bold px-4 py-2 h-12 mt-5 rounded-lg focus:outline-none"
+        className="sm:hidden block border border-b-2  shadow-md bg-blue-100 mb-2 sm:text-xl font-bold px-4 py-2 h-12 mt-5 rounded-lg focus:outline-none"
       >
         Dictionary ⬇️ {/* Three-line hamburger icon */}
       </button>
@@ -53,10 +53,10 @@ export default function TextToSign({ handleClick }) {
 
       <div className='md:basis-1/2 flex flex-col justify-center items-center p-5'>
         <div className='flex md:justify-between md:w-96 w-auto gap-24 px-4'>
-          <button onClick={handleClick} className='font-bold text-xl'>
+          <button onClick={handleClick} className='font-bold sm:text-xl'>
             Back
           </button>
-          <button onClick={resetSelection} className='font-bold text-xl'>
+          <button onClick={resetSelection} className='font-bold sm:text-xl'>
             Stop
           </button>
         </div>

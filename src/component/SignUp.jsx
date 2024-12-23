@@ -121,8 +121,15 @@ const SignUp = () => {
           withCredentials:true
         },)
         .then(response=>{
-                setSign(true); 
-                navigate('/signin'); 
+              
+                axios.post('http://localhost:5000/students/login', { email, password ,withCredentials:true})
+                .then((res) => {
+                  localStorage.setItem('token', res.data.token);
+                  setSign(true);
+                  navigate('/');
+                  window.location.reload();
+                })
+                .catch((err) => console.error(err));
               } 
         )
         .catch(error=>{
@@ -136,7 +143,7 @@ const SignUp = () => {
       <div className="block md:flex justify-center items-center md:mx-40 mx-6 p-3 shadow-lg bg-white rounded-lg">
         
         {/* Left side */}
-        <div className="md:w-1/2 bg-blue-50 text-black flex flex-col justify-center items-center p-8 rounded-lg h-[34rem]">
+        <div className="md:w-1/2 hidden md:flex bg-blue-50 text-black  flex-col justify-center items-center p-8 rounded-lg h-[34rem]">
           <img src="ImagesNV/signin/NVlogoS.png" alt="Feature Illustration" className="h-16" />
           <div>
             <img src="ImagesNV/signin/SignInn.png" alt="Feature Illustration" className="w-full h-[24rem]" />
@@ -144,15 +151,15 @@ const SignUp = () => {
         </div>
 
         {/* Right side */}
-        <div className="md:w-1/2 flex flex-col justify-center items-center gap-2 p-8 bg-white rounded-lg">
-          <h2 className="text-2xl font-semibold mb-2">Sign Up</h2>
+        <div className="md:w-1/2 flex flex-col justify-center items-center gap-2 md:p-8 text-sm md:text-lg bg-white rounded-lg">
+          <h2 className="md:text-2xl font-semibold mb-2">Sign Up</h2>
           <form className="w-3/4 space-y-4" onSubmit={handleSubmit}>
             
             {/* Name input */}
             <input
               type="text"
               placeholder="Name"
-              className="w-full p-3 border border-gray-300 rounded-md hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-200"
+              className="w-full p-2 md:p-3 border border-gray-300 rounded-md hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-200"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required

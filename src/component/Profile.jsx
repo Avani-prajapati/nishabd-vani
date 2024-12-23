@@ -4,7 +4,7 @@ import SignIn from './SingIn'
 
 export default function Profile({logout}) {
   return (
-    <div className='px-14'>
+    <div className='sm:px-14 px-3'>
     <ProfilePage logout={logout}></ProfilePage>
     </div>
   )

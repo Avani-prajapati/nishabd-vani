@@ -39,7 +39,7 @@ const Numbers = ({Click}) => {
           key={i}
           src={data.Basket}
           alt="Basket"
-          className={`${number < 4?"size-24":`${number < 10?"size-14":`size-10` }`}`}
+          className={`${number < 4?"sm:size-24 size-16":`${number < 10?"sm:size-14 size-12":`sm:size-10 size-8` }`}`}
         />
       );
     }
@@ -47,21 +47,21 @@ const Numbers = ({Click}) => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-8 max-h-screen ">
-       <button className='font-bold my-3 text-xl hover:text-blue-800 ' onClick={Click}>
+    <div className="flex flex-col items-center w-auto mt-8 sm:mx-4 max-h-screen ">
+       <button className='font-bold my-3 sm:text-xl hover:text-blue-800 ' onClick={Click}>
               {'<-'}  Back
           </button>
-      <h1 className="text-3xl font-bold mb-4">Numbers</h1>
+      <h1 className="sm:text-3xl font-bold mb-4">Numbers</h1>
 
-      <div className=" p-10 w-96 h-96 rounded-lg shadow-lg bg-orange-50 flex flex-col items-center justify-center">
+      <div className=" p-10  w-56  sm:w-96 sm:h-96 h-80 rounded-lg shadow-lg bg-orange-50 flex flex-col items-center justify-center">
         {data != null ?
           <>
             <img
               src={data.signImage}
               alt='not found'
-              className="w-20 h-20 mb-4"
+              className="sm:size-20 size-16 mb-4"
             />
-            <p className="text-6xl font-bold mb-4">{data.number}</p>
+            <p className="sm:text-6xl text-2xl font-bold mb-4">{data.number}</p>
             <div className="flex flex-wrap justify-center">
               {generateBasketImages(data.number)}
             </div>
@@ -69,19 +69,34 @@ const Numbers = ({Click}) => {
           : <></>}
       </div>
 
-      <div className="flex justify-between w-full max-w-xs mt-8">
+      <div className="md:flex hidden justify-between w-full max-w-xs mt-8">
         <button
-          className="text-lg font-medium text-gray-700"
+          className="hover:text-white p-2 rounded text-blue-400 text-2xl border font-bold border-blue-400 hover:bg-blue-500"
           onClick={() => handleClick("prev")}
         >
-          &lt; Previous
+          &lt; Pre
         </button>
 
         <button
-          className="text-lg font-medium text-gray-700"
+          className="hover:text-white p-2 rounded text-blue-400 text-2xl border font-bold border-blue-400 hover:bg-blue-500"
           onClick={() => handleClick("next")}
         >
           Next &gt;
+        </button>
+      </div>
+      <div className="flex md:hidden justify-between mb-4 p-5 w-full max-w-xs mt-8">
+        <button
+          className="hover:text-white p-2 rounded text-blue-400 text-2xl border font-bold border-blue-400 hover:bg-blue-500"
+          onClick={() => handleClick("prev")}
+        >
+          {'<'}
+        </button>
+
+        <button
+          className="hover:text-white p-2 rounded text-blue-400 text-2xl border font-bold border-blue-400 hover:bg-blue-500"
+          onClick={() => handleClick("next")}
+        >
+          {'>'} 
         </button>
       </div>
     </div>

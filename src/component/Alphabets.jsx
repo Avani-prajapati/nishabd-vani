@@ -73,32 +73,32 @@ export default function Alphabets({ num,Click }) {
 
   return (
     <>
-     <button className='font-bold my-3 text-xl w-full  hover:text-blue-800 ' onClick={Click}>
+     <button className='font-bold my-3 sm:text-xl w-full  hover:text-blue-800 ' onClick={Click}>
               {'<-'}  Back
           </button>
       <div className="flex flex-col items-center justify-center max-h-screen basis-4/6 ">
-        <div className='block text-center text-2xl font-bold'>{num == 1 ? "English Alphabets" : "ગુજરાતી મૂળાક્ષરો"}</div>
+        <div className='block text-center sm:text-2xl font-bold'>{num == 1 ? "English Alphabets" : "ગુજરાતી મૂળાક્ષરો"}</div>
         <div className={`bg-white rounded-xl mt-3  mx-4 sm:mx-0 shadow-lg p-8  `}>
           {data.flag == "Learn" ? (
             <div className="flex flex-col sm:w-96 items-center justify-center h-[21rem] space-y-6 p-4">
               <div className="text-6xl">
-                <img src={data.signImage} className='size-44 border border-black rounded-md' alt="Sign" />
+                <img src={data.signImage} className='sm:size-44 size-36 border border-black rounded-md' alt="Sign" />
               </div>
-              <div className="text-4xl font-bold">{data.alphabet}</div>
+              <div className="sm:text-4xl text-2xl font-bold">{data.alphabet}</div>
               <img src={data.objectImage} className='h-28' alt="Object" />
             </div>
           ) : (
             <div className='flex flex-col items-center justify-center h-[22rem] space-y-6 sm:w-72'>
-              <div className="text-4xl font-bold">{data.question}</div>
+              <div className="sm:text-4xl text-xl font-bold">{data.question}</div>
               {data.options ? (
                 <div className='flex flex-wrap w-full gap-3'>
-                  <div className='w-full text-center  text-xl font-semibold'>{num == 1 ? "Guess the Sign..." : "નિશાની ઓળખો..."}</div>
+                  <div className='w-full text-center  sm:text-xl font-semibold'>{num == 1 ? "Guess the Sign..." : "નિશાની ઓળખો..."}</div>
                   <div className='flex  items-center justify-center w-full gap-4'>
-                    <img src={data.options[0]["1"]} className='sm:h-28 h-24 w-28 my-2 sm:w-36 border border-black rounded shadow-md cursor-pointer' alt="Option 1" onClick={() => checkAns(data.options[0]["1"])} />
-                    <img src={data.options[0]["2"]} className='sm:h-28  h-24 w-28 my-2 sm:w-36 border border-black rounded shadow-md cursor-pointer' alt="Option 2" onClick={() => checkAns(2)} />
+                    <img src={data.options[0]["1"]} className='sm:h-28 h-24 w-20 my-2 sm:w-36 border border-black rounded shadow-md cursor-pointer' alt="Option 1" onClick={() => checkAns(data.options[0]["1"])} />
+                    <img src={data.options[0]["2"]} className='sm:h-28  h-24 w-20 my-2 sm:w-36 border border-black rounded shadow-md cursor-pointer' alt="Option 2" onClick={() => checkAns(2)} />
                   </div>
                   <div className='flex w-full justify-center'> 
-                    <img src={data.options[0]["3"]} className='sm:h-28  h-24 w-28 my-2 sm:w-36 border border-black rounded shadow-md cursor-pointer' alt="Option 3" onClick={() => checkAns(3)} />
+                    <img src={data.options[0]["3"]} className='sm:h-28  h-24 w-20 my-2 sm:w-36 border border-black rounded shadow-md cursor-pointer' alt="Option 3" onClick={() => checkAns(3)} />
                   </div>
                 </div>
               ) : (
@@ -113,13 +113,13 @@ export default function Alphabets({ num,Click }) {
                     ) : (
                       wrongData && (
                         <>
-                          <div className='md:w-full flex justify-center'><img src='ImagesNV/AlphabetQuiz/Wrong.png' className=' size-40' alt="Wrong" /></div>
-                          <div className='text-center mt-5 text-xl'>
+                          <div className='md:w-full flex justify-center'><img src='ImagesNV/AlphabetQuiz/Wrong.png' className=' sm:size-40 size-32' alt="Wrong" /></div>
+                          <div className='text-center mt-5 sm:text-xl'>
                             <div>Oo Wrong Ans</div>
                             <div className='flex items-center w-full'>
                               <div className='md:w-full flex gap-3 justify-center my-2 items-center'>
                                 <div>Ans :</div>
-                                <img src={wrongData.answer} className='size-24' alt="Correct Answer" />
+                                <img src={wrongData.answer} className='sm:size-24 size-20' alt="Correct Answer" />
                               </div>
                             </div>
                             <button className='bg-red-500 text-white rounded p-2 mb-3' onClick={handleWrong}>Try Again</button>
@@ -133,9 +133,13 @@ export default function Alphabets({ num,Click }) {
             </div>
           )}
         </div>
-        <div className="flex justify-evenly w-full px-8 py-4 mt-8">
+        <div className="md:flex hidden justify-evenly w-full px-8 py-4 mt-8">
           <button className="hover:text-white p-2 rounded text-blue-400 text-2xl border font-bold border-blue-400 hover:bg-blue-500" onClick={() => handleClick("prev")}>{'<'} prev </button>
           <button className="hover:text-white text-2xl border shadow-md text-blue-400 font-bold border-blue-400 rounded p-2 hover:bg-blue-500" onClick={() => handleClick("next")}>next {'>'}</button>
+        </div>
+        <div className="flex md:hidden justify-evenly w-full px-8 py-4 mt-8">
+          <button className="hover:text-white p-2 rounded text-blue-400 text-2xl border font-bold border-blue-400 hover:bg-blue-500" onClick={() => handleClick("prev")}>{'<'} </button>
+          <button className="hover:text-white text-2xl border shadow-md text-blue-400 font-bold border-blue-400 rounded p-2 hover:bg-blue-500" onClick={() => handleClick("next")}>{'>'}</button>
         </div>
       </div>
     </>

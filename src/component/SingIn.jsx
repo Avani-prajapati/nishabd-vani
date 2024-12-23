@@ -30,18 +30,18 @@ const SignIn = () => {
         {/* Left Section */}
         <div className="md:w-1/2 hidden md:flex flex-col items-center p-8 bg-blue-50 rounded-lg">
           <img src="ImagesNV/signin/NVlogoS.png" alt="Logo" className="h-12 mb-4" />
-          <img src="ImagesNV/signin/SignInn.png" alt="Illustration" className="w-full" />
+          <img src="ImagesNV/signin/SignInn.png" alt="Illustration" className="w-full h-[20rem]" />
         </div>
 
         {/* Right Section */}
         <div className="md:w-1/2 flex flex-col items-center  gap-8 md:gap-11 bg-white rounded-lg">
-          <h2 className="text-2xl font-semibold">Sign In</h2>
+          <h2 className="md:text-2xl text-sm font-semibold">Sign In</h2>
           <form className="w-3/4 space-y-4" onSubmit={handleSubmit}>
             
             <input
               type="email"
               placeholder="Email"
-              className="w-full p-3 border border-gray-300 rounded-md hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-200"
+              className="w-full p-1 md:p-3 text-sm md:text-lg border border-gray-300 rounded-md hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-200"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -49,19 +49,19 @@ const SignIn = () => {
             <input
               type="password"
               placeholder="Password"
-              className="w-full p-3 border border-gray-300 rounded-md hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-200"
+              className="w-full p-1 md:p-3 border text-sm md:text-lg border-gray-300 rounded-md hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-200"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
             
             {/* Links and Buttons */}
-            <button type="submit" className="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600">
+            <button type="submit" className="w-full text-sm md:text-lg bg-blue-500 text-white p-1 md:p-3 rounded-md hover:bg-blue-600">
               Sign In
             </button>
         
           </form>
-          <p className="text-sm mt-4">
+          <p className="text-sm text-center mt-4">
             Don’t have an account? <a href="/signup" className="text-blue-500 hover:underline">Sign up</a>
           </p>
         </div>

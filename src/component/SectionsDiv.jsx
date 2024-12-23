@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export default function SectionsDiv() {
   return (
-    <div className="p-6 w-full mt-4">
+    <div className="sm:p-6 w-full mt-4">
       <h1 className="text-center text-xl font-semibold">
         Sections Introduction
       </h1>

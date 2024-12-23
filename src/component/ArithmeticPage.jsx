@@ -38,7 +38,7 @@ export default function ArithmeticPage({ Click }) {
         
         <div className="flex flex-col w-full md:w-1/4 md:min-h-screen bg-red-100 p-12 pt-0 space-y-4">
         <button 
-        className="text-lg font-bold text-gray-700 w-full mt-2 hover:text-blue-800 mb-4 self-start" 
+        className="sm:text-lg font-bold text-gray-700 w-full mt-2 hover:text-blue-800 mb-4 self-start" 
         onClick={Click}
       >
         {'<-'} Back
@@ -93,13 +93,13 @@ export default function ArithmeticPage({ Click }) {
           </div>
           <div className='flex gap-9 justify-center itmes-center'>
          <div className='flex flex-col justify-center'>
-          <h3 className="text-lg font-bold mb-2 text-center font-mono">Example of {selectedOption}</h3>
+          <h3 className="sm:text-lg font-bold mb-2 text-center font-mono">Example of {selectedOption}</h3>
          </div>
-          <div className="flex justify-center items-center bg-white p-4 rounded-lg shadow-md">
+          <div className="flex justify-center items-center bg-white sm:p-4 rounded-lg shadow-md">
             <img
               src={gifSources[selectedOption]}
               alt={`${selectedOption} example`}
-              className="w-32 h-32 md:w-40 md:h-40 rounded-lg"
+              className="w-32 sm:h-32 h-14 md:w-40 md:h-40 rounded-lg"
             />
           </div>
           </div>

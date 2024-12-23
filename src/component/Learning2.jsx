@@ -1,9 +1,6 @@
 import React from 'react'
 import Alphabets from './Alphabets';
 import Maths from "./Maths"
-import Science from './Science';
-import Vocabulary from './Vocabulary';
-
 
 export default function Learning2({handleClick,click,section}) {
     const renderSection = () => {
@@ -15,10 +12,6 @@ export default function Learning2({handleClick,click,section}) {
             return <Alphabets num={num} Click={handleClick} ></Alphabets>;
           case 'maths':
             return <Maths num={num} Click={handleClick}></Maths>;
-          case 'science':
-            return <Science num={num} />;
-          case 'vocabulary':
-            return <Vocabulary num={num}/>;
           default:
             return <div>Section not found</div>;
         }

@@ -178,12 +178,12 @@ const WebcamStream = ({ handleClick }) => {
     <div className='text-center md:p-4 pt-2 p-2 flex flex-col items-center '>
       <div className='flex justify-between md:w-96 w-screen px-5 '>
         <div onClick={handleClick}>
-          <button className='font-bold p-3 m-2 text-xl hover:text-blue-800 '>
+          <button className='font-bold p-3 m-2 sm:text-xl hover:text-blue-800 '>
             Back
           </button>
         </div>
         <div className='flex justify-center'>
-          <button onClick={startWebSocket} className='hover:text-blue-800 text-xl font-bold'>
+          <button onClick={startWebSocket} className='hover:text-blue-800 sm:text-xl font-bold'>
             {start ? 'Stop' : 'Start'}
           </button>
         </div>
@@ -201,7 +201,7 @@ const WebcamStream = ({ handleClick }) => {
           className='rounded'
         />
       </div>
-      <div style={{ marginTop: '20px', fontSize: '24px' }} className="text-xl bg-blue-200 p-3">
+      <div style={{ marginTop: '20px' }} className="sm:text-3xl bg-blue-200 p-3">
         {gesture ? `Recognized Gesture: ${gesture}` : 'Waiting for gesture...'}
       </div>
     </div>

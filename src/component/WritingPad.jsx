@@ -5,15 +5,32 @@ const WritingPad = () => {
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
-  const [ans,setans] = useState(null)
+  const [ans, setans] = useState(null);
+
+  const data = ['અ', 'આ', 'ઇ', 'ઈ', 'ઉ', 'ઊ', 'ઋ', 'એ', 'ઐ', 'ઓ', 'ઔ', 'ક', 'ખ', 'ગ', 'ઘ', 'ઙ', 'ચ', 'છ', 'જ', 'ઝ', 'ઞ', 'ટ', 'ઠ', 'ડ', 'ઢ', 'ણ', 'ત', 'થ', 'દ', 'ધ', 'ન', 'પ', 'ફ', 'બ', 'ભ', 'મ', 'ય', 'ર', 'લ', 'વ', 'શ', 'ષ', 'સ', 'હ', 'ળ', 'ક્ષ', 'જ્ઞ'];
+  const data2 = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+  const [currentArray, setCurrentArray] = useState(data);
+  const [currentLetter, setCurrentLetter] = useState(data[0]);
+
+  useEffect(() => {
+    selectRandomLetter();
+  }, []);
+
+  const selectRandomLetter = () => {
+    const arrays = [data, data2];
+    const selectedArray = arrays[Math.floor(Math.random() * arrays.length)];
+    const selectedLetter = selectedArray[Math.floor(Math.random() * selectedArray.length)];
+    setCurrentArray(selectedArray);
+    setCurrentLetter(selectedLetter);
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
 
-    // Set the internal canvas size to match the display size
-    canvas.width = 200; 
+    canvas.width = 200;
     canvas.height = 200;
-    canvas.style.width = '200px';  // Scaled display size
+    canvas.style.width = '200px'; // Scaled display size
     canvas.style.height = '200px';
 
     const context = canvas.getContext('2d');
@@ -44,10 +61,27 @@ const WritingPad = () => {
     contextRef.current.stroke();
   };
 
-  const resetCanvas = () => {
+  const clearCanvas = () => {
     const context = contextRef.current;
     context.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-    setans(null)
+    setans(null);
+  };
+
+  const resetCanvas = () => {
+    clearCanvas();
+    selectRandomLetter();
+  };
+
+  const checkAnswer = () => {
+    const pixels = getPixels();
+    const route = JSON.stringify(currentArray) === JSON.stringify(data) ? "gujBoard" : "EngBoard";
+    axios
+      .post(`http://localhost:5000/${route}`, { pixels }, { withCredentials: true })
+      .then((res) => {
+        console.log(res.data.prediction);
+        setans(res.data.prediction);
+      })
+      .catch((error) => console.error(error));
   };
 
   const getPixels = () => {
@@ -63,72 +97,65 @@ const WritingPad = () => {
     }
 
     // Downsample pixels from 200x200 to 50x50
-    for (let i = 0; i < _pixels.length; i += 800) { 
-      for (let j = 0; j < 200; j += 4) { 
+    for (let i = 0; i < _pixels.length; i += 800) {
+      for (let j = 0; j < 200; j += 4) {
         pixels.push(_pixels[i + j]);
       }
     }
-    console.log(pixels.toString());
     return pixels;
   };
 
-  const addDataAction = () => {
-    const pixels = getPixels();
-    axios.post("http://localhost:5000/gujBoard", { pixels },{withCredentials:true})
-      .then(res => {console.log(res.data.prediction)
-        setans(res.data.prediction)
-      })
-      .catch(error => console.error(error));
-  };
-
-  const practiceAction = () => {
-    const pixels = getPixels();
-    axios.post("http://localhost:5000/EngBoard", { pixels },{withCredentials:true})
-      .then(res => {console.log(res)
-        setans(res.data.prediction)
-      })
-      .catch(error => console.error(error));
-  };
-
   return (
-    <div className="flex flex-col items-center  h-screen p-4">
-      <h1 className="text-3xl font-bold mb-4">Practice Writing</h1>
-      <div className="flex flex-col items-center">
-        <canvas
-          ref={canvasRef}
-          onMouseDown={startDrawing}
-          onMouseUp={finishDrawing}
-          onMouseMove={draw}
-          onTouchStart={(e) => startDrawing(e)}
-          onTouchEnd={finishDrawing}
-          onTouchMove={(e) => draw(e)}
-          className="border-2 border-black bg-white"
-          style={{ width: '200px', height: '200px' }} // Display size
-        />
-      </div>
-      <div className='text-2xl'>{ans}</div>
-      <div className="mt-4 flex-col flex sm:block gap-3 items-center sm:space-x-4">
-        <button
-          onClick={addDataAction}
-          className="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600"
-        >
-          Gujarati alpha
-        </button>
-        <button
-          onClick={practiceAction}
-          className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600"
-        >
-          English alpha
-        </button>
-        <button
-          onClick={resetCanvas}
-          className="px-4 py-2 bg-gray-500 text-white rounded-lg shadow-md hover:bg-gray-600"
-        >
-          Clear
-        </button>
+    <div className="bg-blue-100 bg-gradient py-4 px-4 my-6 md:m-6">
+      <div
+        className="mt-2 sm:p-8 p-5 pt-3 shadow-lg bg-slate-50 rounded-3 text-wrap text-clip basis-1/2"
+        style={{ height: "fit-content" }}
+      >
+        <h1 className="md:text-3xl font-bold mb-4">Writing Pad</h1>
+        <hr />
+        <h2 className="my-4">Write letter: {currentLetter}</h2>
+        <div className="flex flex-col my-4 items-center">
+          <canvas
+            ref={canvasRef}
+            onMouseDown={startDrawing}
+            onMouseUp={finishDrawing}
+            onMouseMove={draw}
+            onTouchStart={(e) => startDrawing(e)}
+            onTouchEnd={finishDrawing}
+            onTouchMove={(e) => draw(e)}
+            className="border-2 border-black bg-white"
+            style={{ width: '200px', height: '200px' }} // Display size
+          />
+        </div>
+        <div className="md:text-2xl">
+          {ans === currentLetter
+            ? ans && "Correct 🥳"
+            : ans && "Incorrect 😯"}
+        </div>
+        <div className="mt-4 my-5 flex-col flex sm:block gap-3 items-center sm:space-x-4">
+          <button
+            onClick={checkAnswer}
+            className="px-4 text-sm md:text-lg py-2 bg-green-400 text-white rounded-lg shadow-md hover:bg-green-500"
+          >
+            Check Answer
+          </button>
+          <button
+            onClick={clearCanvas}
+            className="px-4 text-sm md:text-lg py-2 bg-red-400 text-white rounded-lg shadow-md hover:bg-red-500"
+          >
+            Try Again
+          </button>
+          <button
+            onClick={resetCanvas}
+            className="px-4 text-sm md:text-lg py-2 bg-blue-400 text-white rounded-lg shadow-md hover:bg-blue-500"
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
 export default WritingPad;
+

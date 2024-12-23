@@ -13,7 +13,7 @@ export default function CarouselWithIndicators() {
               
             <img
               src="/ImagesNV/Home/homeimage1.jpeg"
-              className="block h-[34rem] w-full"
+              className="block h-[28rem] md:h-[34rem] w-full"
               alt="..."
             />
         </TECarouselItem>
@@ -23,7 +23,7 @@ export default function CarouselWithIndicators() {
           >
             <img
               src="/ImagesNV/Home/homeimage2.webp"
-              className="block h-[34rem] w-full"
+              className="block h-[28rem] md:h-[34rem] w-full"
               alt="..."
             />
           </TECarouselItem>
@@ -33,7 +33,7 @@ export default function CarouselWithIndicators() {
           >
             <img
               src="/ImagesNV/Home/homeimage3.avif"
-              className="block h-[34rem] w-full "
+              className="block h-[28rem] md:h-[34rem] w-full "
               alt="..."
             />
           </TECarouselItem>

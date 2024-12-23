@@ -10,9 +10,9 @@ const MatchingGame = ({ question, onComplete }) => {
   const [completeCalled, setCompleteCalled] = useState(false);
   const [score, setScore] = useState(0);
 
-  // Check if the correct answer is based on alphabet/signImage or sign_name/cloud_location
   const isAlphabet = correctAnswer[0]?.hasOwnProperty("alphabet");
   const isSignName = correctAnswer[0]?.hasOwnProperty("sign_name");
+  const [usedItems, setUsedItems] = useState([]);
 
   useEffect(() => {
     if (matches.length === columnA.length && !completeCalled) {
@@ -22,191 +22,175 @@ const MatchingGame = ({ question, onComplete }) => {
     }
   }, [matches, columnA.length, completeCalled, onComplete, score]);
 
-  const handleItemSelect = (item) => setSelectedItem(item);
-  const handleImageSelect = (image) => {
-    if (!selectedItem) return;
-
-    const isCorrect = correctAnswer.some((answer) => {
-      if (isAlphabet && isSignName) {
-        // Handle the case where the correct answer contains both alphabet/signImage and sign_name/cloud_location
-        return (
-          (answer.alphabet === selectedItem && answer.signImage === image) ||
-          (answer.sign_name === selectedItem && answer.cloud_location === image)
-        );
-      }
-
-      if (isAlphabet) {
-        return answer.alphabet === selectedItem && answer.signImage === image;
-      }
-
-      if (isSignName) {
-        return answer.sign_name === selectedItem && answer.cloud_location === image;
-      }
-
-      return false;
-    });
-
-    if (isCorrect) setScore((prev) => prev + 1);
-
-    setMatches((prevMatches) => [
-      ...prevMatches,
-      { item: selectedItem, image, isCorrect },
-    ]);
-    setSelectedItem(null);
-  };
-
   useEffect(() => {
     setSelectedItem(null);
     setMatches([]);
     setAllSelected(false);
     setCompleteCalled(false);
     setScore(0);
+    setUsedItems([]);
   }, [question]);
 
-  const showCorrectAnswers = () => (
-    <div className="mt-4">
-      <div className="flex flex-col items-center mt-2">
-        {correctAnswer.map((answer, index) => (
-          <div key={index} className="flex items-center mb-2">
-            {answer.alphabet ? (
-              <>
-                {/* <span className="text-blue-500 text-2xl mr-2">
-                  {answer.alphabet}
-                </span> */}
-                <img
-                  src={answer.signImage}
-                  alt="Matched Sign"
-                  className="w-20 h-20 border-4 border-green-400"
-                />
-              </>
-            ) : (
-              <>
-                {/* <span className="text-blue-500 text-2xl mr-2">
-                  {answer.sign_name}
-                </span> */}
-                <img
-                  src={answer.cloud_location}
-                  alt="Matched Sign"
-                  className="w-20 h-20 border-4 border-green-400"
-                />
-              </>
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+  const handleItemSelect = (item) => setSelectedItem(item);
+
+  const handleImageSelect = (image) => {
+    if (!selectedItem) return;
+
+    const isCorrect = correctAnswer.some((answer) => {
+      if (isAlphabet && isSignName) {
+        return (
+          (answer.alphabet === selectedItem && answer.signImage === image) ||
+          (answer.sign_name === selectedItem && answer.cloud_location === image)
+        );
+      }
+      if (isAlphabet) {
+        return answer.alphabet === selectedItem && answer.signImage === image;
+      }
+      if (isSignName) {
+        return (
+          answer.sign_name === selectedItem && answer.cloud_location === image
+        );
+      }
+      return false;
+    });
+
+    setMatches((prevMatches) => [
+      ...prevMatches,
+      { item: selectedItem, image, isCorrect },
+    ]);
+
+    setUsedItems((prevUsedItems) => [...prevUsedItems, selectedItem]);
+    if (isCorrect) {
+      setScore((score) => score + 1);
+      setUsedItems((prevUsedItems) => [...prevUsedItems, image]);
+    }
+    setSelectedItem(null);
+  };
 
   return (
-    <>
-      <h2 className="text-3xl font-bold text-center mb-6 text-blue-700">
+    <div className="sm:p-4">
+      <h2 className=" sm:text-3xl font-semibold text-center mb-6 text-blue-700">
         Match the Signs!
       </h2>
-      {/* <div className="overflow-x-auto p-4 bg-purple-50 rounded-lg border-4 border-blue-300 shadow-md"> */}
-        <table className="table-fixed w-full">
+      <div className="overflow-x-auto">
+        <table className="table-auto w-full border-collapse border-2 border-blue-400 bg-yellow-50">
           <thead>
             <tr>
-              <th className="px-4 py-3 text-2xl text-center text-pink-500">
+              <th className="border px-4 py-2  sm:text-2xl text-center text-pink-500">
                 Name
               </th>
-              <th className="px-4 py-3 text-2xl text-center text-pink-500">
+              <th className="border px-4 py-2 sm:text-2xl text-center text-pink-500">
                 Sign
               </th>
-              <th className="px-4 py-3 text-2xl text-center text-pink-500">
-                Result
+              <th className="border px-4 py-2 sm:text-2xl text-center text-pink-500">
+                Your Answer
               </th>
-              <th className="px-4 py-3 text-2xl text-center text-pink-500">
-                Correct Answers
+              <th className="border px-4 py-2 sm:text-2xl text-center text-pink-500">
+                Correct Answer
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="p-5">
-                <div className="flex flex-col items-center gap-4">
-                  {columnA.map((item, index) => (
+            {columnA.map((item, index) => {
+              const match = matches.find((match) => match.item === item);
+              const isCorrect = match?.isCorrect;
+
+              return (
+                <tr key={index}>
+                  <td className="border px-4 py-2 text-center">
                     <button
-                      key={index}
                       onClick={() => handleItemSelect(item)}
-                      className={`p-4 w-auto h-20 text-xl break-words font-bold rounded-full text-center cursor-pointer transition-transform transform ${
+                      disabled={usedItems.includes(item)}
+                      className={`p-2 sm:p-4 w-auto h-12 sm:h-20 text-sm sm:text-xl break-words font-bold rounded-full text-center cursor-pointer transition-transform transform ${
                         selectedItem === item
                           ? "bg-blue-400 text-white scale-110"
+                          : usedItems.includes(item)
+                          ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                           : "bg-blue-200 hover:bg-blue-300"
                       }`}
                     >
                       {item}
                     </button>
-                  ))}
-                </div>
-              </td>
+                  </td>
 
-              <td className="p-5">
-                <div className="flex flex-col items-center gap-4">
-                  {columnB.map((image, index) => {
-                    const match = matches.find(
-                      (match) => match.image === image
-                    ); // Check if the image has been matched
-                    const isCorrect = match?.isCorrect;
-
-                    return (
+                  <td className="border px-4 py-2 text-center">
+                    {columnB[index] && (
                       <button
-                        key={index}
-                        onClick={() => handleImageSelect(image)}
-                        className={`p-1 transition-transform transform w-20 h-20 ${
-                          isCorrect === true
-                            ? "bg-green-300" // Correct match
-                            : isCorrect === false
-                            ? "bg-red-300" // Incorrect match
-                            : "bg-yellow-200 hover:bg-yellow-300" // Not yet selected
+                        onClick={() => handleImageSelect(columnB[index])}
+                        disabled={matches.some(
+                          (match) =>
+                            match.image === columnB[index] && match.isCorrect
+                        )}
+                        className={`p-1 transition-transform transform w-16 sm:w-20 h-16 sm:h-20 ${
+                          matches.find((match) => match.image === columnB[index])
+                            ? matches.find(
+                                (match) => match.image === columnB[index]
+                              ).isCorrect
+                              ? "bg-green-300 cursor-not-allowed"
+                              : "bg-red-300"
+                            : "bg-yellow-200 hover:bg-yellow-300"
                         }`}
-                        // style={{ width: "80px", height: "80px" }}
                       >
                         <img
-                          src={image}
+                          src={columnB[index]}
                           alt="Sign"
-                          className="w-full h-full "
+                          className={`w-full h-full ${
+                            matches.some(
+                              (match) =>
+                                match.image === columnB[index] &&
+                                match.isCorrect
+                            )
+                              ? "opacity-50"
+                              : "opacity-100"
+                          }`}
                         />
                       </button>
-                    );
-                  })}
-                </div>
-              </td>
+                    )}
+                  </td>
 
-              {/* <td className="p-4"> */}
-                {matches.length > 0 && (
-                  <div className="flex flex-col items-center">
-                    {matches.map((match, index) => (
-                    <td className="p-2 flex justify-center items-center">
-                      <div key={index} className="flex flex-col items-center mb-2">
-                        {/* <span className="text-blue-500 text-2xl mr-2">
-                          {match.item}
-                        </span>*/
+                  <td className="border px-4 py-2 text-center flex justify-center">
+                    {match ? (
+                      <div className="flex flex-col justify-center items-center">
                         <img
                           src={match.image}
                           alt="Matched Image"
-                          className="w-14 h-14 "
-                        /> 
-                        }
+                          className="w-16 sm:w-20 h-16 sm:h-20"
+                        />
                         <span
-                          className={`ml-2 font-bold ${
+                          className={`mt-2 font-bold ${
                             match.isCorrect ? "text-green-600" : "text-red-600"
                           }`}
                         >
                           {match.isCorrect ? "Correct!" : "Oops!"}
                         </span>
                       </div>
-                      </td>
-                    ))}
-                  </div>
-                )}
-              {/* </td> */}
+                    ) : (
+                      <span className="text-gray-500 h-20">Not Answered</span>
+                    )}
+                  </td>
 
-              <td className="p-4">{allSelected && showCorrectAnswers()}</td>
-            </tr>
+                  <td className="border px-4 py-2 text-center">
+                    {allSelected && (
+                      <div className="flex items-center justify-center">
+                        <img
+                          src={
+                            correctAnswer[index]?.alphabet
+                              ? correctAnswer[index].signImage
+                              : correctAnswer[index]?.cloud_location
+                          }
+                          alt="Correct Match"
+                          className="w-16 sm:w-20 h-16 sm:h-20 border-4 border-green-400"
+                        />
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
-      {/* </div> */}
-    </>
+      </div>
+    </div>
   );
 };
 
