@@ -169,8 +169,13 @@ const WebcamStream = ({ handleClick }) => {
 
   useEffect(() => {
     if (isWebSocketActive) {
+<<<<<<< Updated upstream
       const intervalId = setInterval(captureFrame, 100);
       return () => clearInterval(intervalId);
+=======
+      const intervalId = setInterval(captureFrame, 1); // Adjust the interval as needed
+      return () => clearInterval(intervalId); // Cleanup on component unmount
+>>>>>>> Stashed changes
     }
   }, [captureFrame, isWebSocketActive]);
 
