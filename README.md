@@ -22,7 +22,7 @@ It is developed using modern web technologies such as **React.js** and **Tailwin
 ---
 
 
-## Overview of Web
+## Web Overview
 ![image](/public/ImagesNV/ov.gif)
 
 ## Technology Stack  
