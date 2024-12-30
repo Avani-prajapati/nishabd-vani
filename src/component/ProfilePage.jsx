@@ -13,7 +13,7 @@ const ProfilePage = ({ logout }) => {
   const [quizData, setQuizData] = useState({});
   const [activityArray, setActivityArray] = useState([]);
   const [showDetails, setShowDetails] = useState(false);
-  // const [totalCount,setTotalCount] = useState(0);
+
   const  data=[
     { name: "Science", value:(quizData.science || []).length, color: "#B3E5B3" }, 
     { name: "Alphabets", value: (quizData.alpha || []).length, color: "#E1BEE7" }, 
@@ -39,7 +39,6 @@ const ProfilePage = ({ logout }) => {
       .catch((err) => console.log(err));
   }, []);
 
-  // Utility function to calculate highest and current scores
   const calculateScores = (data = []) => ({
     highestScore: Math.max(...data, 0), // Get the max score or 0 if no data
     currentScore: data[data.length - 1] || 0, // Get the last score or 0

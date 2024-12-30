@@ -22,7 +22,7 @@ export default function Conversion1({isopen}) {
                Text to Sign
             </h1>
             <div className='hidden md:block'>
-               <h3>Transfering Written text into expressive sign LAnguage seamlessly with our text-to-sign converter.</h3>    
+               <h3>Transfering text into sign Language seamlessly with our text-to-sign converter.</h3>    
             </div>
             <div className=' hidden md:block bg-blue-100 text-center p-2 rounded'>
                 start learning  

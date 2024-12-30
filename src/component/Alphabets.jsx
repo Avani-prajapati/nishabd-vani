@@ -22,7 +22,6 @@ export default function Alphabets({ num,Click }) {
       {withCredentials:true}
     )
       .then(res => {
-        console.log(res.data);
         setData(res.data);
       })
       .catch(err => {
@@ -38,7 +37,6 @@ export default function Alphabets({ num,Click }) {
       {withCredentials:true}
     )
       .then(res => {
-        console.log(res.data);
         setData(res.data);
       })
       .catch(err => {

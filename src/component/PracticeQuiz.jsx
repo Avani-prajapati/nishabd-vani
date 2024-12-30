@@ -12,8 +12,6 @@ export default function PracticeQuiz({ quizData, module, baseCall }) {
   const [correct, setCorrect] = useState(false);
 
   const opRefs = useRef([]);
-
-  //   console.log(score);
   useEffect(() => {
     if (quizData) {
       setQue(quizData);

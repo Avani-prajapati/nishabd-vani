@@ -28,7 +28,6 @@ export default function PracticeHome() {
       )
       .then((response) => {
         setQuizData(response.data);
-        console.log(response);
       })
       .catch((error) => {
         console.error('Error fetching quiz data:', error);

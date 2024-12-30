@@ -19,7 +19,6 @@ function App() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    console.log(localStorage.getItem('token'))
     axios.get('http://localhost:5000/students/profile', {
       withCredentials: true,
       headers: {

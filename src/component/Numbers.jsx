@@ -9,7 +9,6 @@ const Numbers = ({Click}) => {
       {withCredentials:true}
     )
       .then(res => {
-        console.log(res.data);
         setData(res.data);
       })
       .catch(err => {
@@ -23,7 +22,6 @@ const Numbers = ({Click}) => {
       {withCredentials:true}
     )
       .then(res => {
-        console.log(res.data);
         setData(res.data);
       })
       .catch(err => {
@@ -69,7 +67,7 @@ const Numbers = ({Click}) => {
           : <></>}
       </div>
 
-      <div className="md:flex hidden justify-between w-full max-w-xs mt-8">
+      <div className="md:flex hidden justify-between w-full max-w-xs mb-2 mt-8">
         <button
           className="hover:text-white p-2 rounded text-blue-400 text-2xl border font-bold border-blue-400 hover:bg-blue-500"
           onClick={() => handleClick("prev")}

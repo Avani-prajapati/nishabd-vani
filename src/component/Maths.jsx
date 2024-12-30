@@ -7,7 +7,6 @@ import ArithmeticPage from './ArithmeticPage';
 const Maths = ({num,Click}) => {
 
   const renderSection = () => {
-    console.log(num)
      switch (num) {
        case '1' :
          return <Numbers Click={Click}></Numbers>;
